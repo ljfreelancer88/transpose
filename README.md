@@ -4,7 +4,7 @@
 [![Total Downloads](https://img.shields.io/packagist/dt/ljfreelancer88/transpose.svg?style=flat-square)](https://packagist.org/packages/ljfreelancer88/transpose)
 ![GitHub Actions](https://github.com/ljfreelancer88/transpose/actions/workflows/main.yml/badge.svg)
 
-This is where your description should go. Try and limit it to a paragraph or two, and maybe throw in a mention of what PSRs you support to avoid any confusion with users and contributors.
+Tranponse chords using PHP. It's been used at [Collideborate](https://collideborate.me)
 
 ## Installation
 
