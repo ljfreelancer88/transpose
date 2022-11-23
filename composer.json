@@ -1,0 +1,42 @@
+{
+    "name": "ljfreelancer88/transpose",
+    "description": "PHP Transposer",
+    "keywords": [
+        "ljfreelancer88",
+        "transpose"
+    ],
+    "homepage": "https://github.com/ljfreelancer88/transpose",
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Jake Pucan",
+            "email": "lj88@duck.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^7.4|^8.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Ljfreelancer88\\Transpose\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Ljfreelancer88\\Transpose\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+
+    },
+    "config": {
+        "sort-packages": true
+    }
+}
