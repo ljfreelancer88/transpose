@@ -6,6 +6,8 @@
 
 Tranponse chords using PHP. It's been used at [Collideborate](https://collideborate.me)
 
+Note: Under Development :)
+
 ## Installation
 
 You can install the package via composer:
@@ -38,11 +40,6 @@ Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
 ### Security
 
 If you discover any security related issues, please email lj88@duck.com instead of using the issue tracker.
-
-## Credits
-
--   [Jake Pucan](https://github.com/ljfreelancer88)
--   [All Contributors](../../contributors)
 
 ## License
 
