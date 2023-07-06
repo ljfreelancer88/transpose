@@ -11,7 +11,7 @@ final class Transpose implements TransposeInterface
 {
     private static $chromaticScale = ['C', 'C#', 'Db', 'D', 'D#', 'Eb', 'E', 'F', 'F#', 'Gb', 'G', 'G#', 'Ab', 'A', 'A#', 'Bb', 'B'];
 
-    private $chromaticScaleForSharp = [
+    private array $chromaticScaleForSharp = [
         #'C',
         ['C#', 'Db'],
         'D',
@@ -27,7 +27,7 @@ final class Transpose implements TransposeInterface
         ['B#', 'C'],
     ];
 
-    private $chromaticScaleForFlat = [
+    private array $chromaticScaleForFlat = [
         'C',
         ['Db', 'C#'],
         'D',
@@ -43,16 +43,14 @@ final class Transpose implements TransposeInterface
     ];
 
     // C is excempted because there is no accidentals
-    private $sharpChords = ['C', 'C#', 'D', 'D#', 'E', 'F#', 'G', 'G#', 'A', 'A#', 'B'];
-
-    private $flatChords = ['C', 'Db', 'Eb', 'F', 'Gb', 'Ab', 'Bb'];
+    private array $sharpChords = ['C', 'C#', 'D', 'D#', 'E', 'F#', 'G', 'G#', 'A', 'A#', 'B'];
 
     private $search = '`([A-G][b#]?(?=\s?(?![a-z])|(?=(2|5|6|7|9|11|13|6\/9|7\-5|7\-9|7\#5|7\#9|7\+5|7\+9|7b5|7b9|7sus2|7sus4|add2|add4|add9|m7b11|m#5|mbb5|m\(maj9\)|m\(add9\)|m6add9|mmaj7|m\(maj(7|11|13)\)|mmaj9|aug(7|9)?|aug\(maj[79]\)|dim|dim7|m\|maj7|m6|min(6|7|9|11|13)?|m7|m7[b#]5|m9|m11|m13|maj7\([b#]5\)|maj#11|maj7sus4#5|maj7sus2sus4|maj7|maj9|maj9\(#11\)|maj11|maj13|maj13\(#11\)|mb5|m|M7|maj|maj7b5|majb5|maj7sus(2|4)|sus(2|4)?[#b]?5?|sus2sus4|\))(?=(\s|\/)))|(?=(\/|\.|-|\(|\)))))`';
     
-    private $song;
-    private $formattedChords = [];
-    private $replacementChords = [];
-    private $key;
+    private string $song;
+    private array $formattedChords = [];
+    private array $replacementChords = [];
+    private string $key;
 
     public function __construct(?string $song = null)
     {
@@ -93,7 +91,7 @@ final class Transpose implements TransposeInterface
 
     public function transpose(string $from, string $to): string
     {
-        if (!in_array($from, self::$chromaticScale) || !in_array($to, self::$chromaticScale)) {
+        if (!in_array($from, self::$chromaticScale, true) || !in_array($to, self::$chromaticScale, true)) {
             throw new TransposeException("Key is invalid!");
         }
 
@@ -115,7 +113,7 @@ final class Transpose implements TransposeInterface
     private function getNotesInScale(string $scale): array
     {
         $scale = ucfirst($scale);
-        $scales = $this->isKeyBelongToSharpChords($this)
+        $scales = $this->isKeyBelongToSharpChords()
             ? $this->chromaticScaleForSharp 
             : $this->chromaticScaleForFlat;
 
@@ -140,19 +138,19 @@ final class Transpose implements TransposeInterface
         return $notesInScale;
     }
 
-    private function hasEnharmonicEquivalent($scale): bool
+    private function hasEnharmonicEquivalent(array $scale): bool
     {
         return is_array($scale);
     }
 
-    private function setSectionsToBold(string $song): string
+    private function setSectionsToBold(string $song): ?string
     {        
         return preg_replace('/(\[.+?\])/', '<strong>${1}</strong>', $song);
     }
 
-    private function isKeyBelongToSharpChords(object $object): bool
+    private function isKeyBelongToSharpChords(): bool
     {
-        return in_array($object->key, $this->sharpChords, true);
+        return in_array($this->key, $this->sharpChords, true);
     }
     
     private function transposeNote(string $note, string $from, string $to): void
@@ -176,7 +174,7 @@ final class Transpose implements TransposeInterface
         the method proceeds to transpose the note to the corresponding note in the "to" key's scale.
         */
         if ($notePos !== -1) {
-            $isKeySharp = $this->isKeyBelongToSharpChords($this);
+            $isKeySharp = $this->isKeyBelongToSharpChords();
 
             $transposedNote = is_array($toScale[$notePos])
                 ? ($isKeySharp ? $toScale[$notePos][0] : $toScale[$notePos][1])

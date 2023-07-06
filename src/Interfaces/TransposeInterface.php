@@ -12,5 +12,5 @@ interface TransposeInterface
 
     public function loadSong(?string $song = null): void;
 
-    public function transpose(string $from, string $to): string;
+    public function transpose(string $from, string $to): ?string;
 }
