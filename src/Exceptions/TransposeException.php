@@ -1,8 +1,8 @@
 <?php
 
-namespace Ljfreelancer88\Exceptions\TransposeException;
+namespace Ljfreelancer88\Transpose\Exceptions;
 
 use Exception;
 
-class TransposeException extends Exception {}
+final class TransposeException extends Exception {}
 
