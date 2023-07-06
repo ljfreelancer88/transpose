@@ -20,13 +20,28 @@ php composer.phar require ljfreelancer88/transpose
 ## Usage
 
 ```php
-// Under Construction :)
+use Ljfreelancer88\Transpose\Transpose;
+
+$transposer = new Transpose($model->content);
+$transposer->setKey($key);
+$transposer->loadSong();
+$transposedSong = $transposer->transpose($model->key, $key);
+
+# OR
+
+$transposer = new Transpose();
+$transposer->setKey($key);
+$transposer->loadSong($model->content);
+$transposedSong = $transposer->transpose($model->key, $key);
 ```
 
 ### Testing
 
 ```bash
 composer test
+
+php vendor/bin/phpunit tests
+php vendor/bin/psalm
 ```
 
 ### Changelog
