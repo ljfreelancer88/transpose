@@ -1,4 +1,4 @@
-# Very short description of the package
+# Chord transposer for PHP
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/ljfreelancer88/transpose.svg?style=flat-square)](https://packagist.org/packages/ljfreelancer88/transpose)
 [![Total Downloads](https://img.shields.io/packagist/dt/ljfreelancer88/transpose.svg?style=flat-square)](https://packagist.org/packages/ljfreelancer88/transpose)
