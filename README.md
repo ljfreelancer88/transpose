@@ -4,7 +4,7 @@
 [![Total Downloads](https://img.shields.io/packagist/dt/ljfreelancer88/transpose.svg?style=flat-square)](https://packagist.org/packages/ljfreelancer88/transpose)
 ![GitHub Actions](https://github.com/ljfreelancer88/transpose/actions/workflows/main.yml/badge.svg)
 
-Tranponse chords using PHP. It's been used at [Collideborate](https://collideborate.me)
+Tranponse lyrics with chords using PHP. It's been used at [Collideborate](https://collideborate.me)
 
 Note: Under Development :)
 
@@ -20,10 +20,10 @@ php composer.phar require ljfreelancer88/transpose
 ## Usage
 
 ```php
-# Import the package
+# 1. Import the package
 use Ljfreelancer88\Transpose\Transpose;
 
-# Somewhere in your Controller
+# 2. Somewhere in your Controller
 $key = 'C'; // C, C#, Db, D
 
 $transposer = new Transpose($model->content);
@@ -38,7 +38,7 @@ $transposer->setKey($key);
 $transposer->loadSong($model->content);
 $transposedSong = $transposer->transpose($model->key, $key);
 
-# Somewhere in your View
+# 3. Somewhere in your View
 echo "<pre>$transposedSong</pre>";
 ```
 
@@ -46,6 +46,7 @@ echo "<pre>$transposedSong</pre>";
 
 ```bash
 composer test
+composer psalm
 
 php vendor/bin/phpunit tests
 php vendor/bin/psalm
