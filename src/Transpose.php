@@ -73,21 +73,11 @@ class Transpose implements TransposeInterface
         if ($this->song === null) {
             throw new TransposeException("No song loaded");
         }        
-        
-        $song_chords = [];
-        preg_match_all($this->search, $this->song, $song_chords);
-
-        $chords = array_unique($song_chords[0]);        
-        foreach ($chords as $chord) {
-            if (strlen($chord) > 1 && ($chord[1] === 'b' || $chord[1] === '#')) {
-                $this->formattedChords[] = substr($chord, 0, 2);
-            } else {
-                $this->formattedChords[] = substr($chord, 0, 1);
-            }
-        }
+                
+        $this->formattedChords();
 
         $this->song = preg_replace($this->search, '|$1|', $this->song);
-    }
+    }    
 
     public function transpose(string $from, string $to): string
     {
@@ -108,6 +98,21 @@ class Transpose implements TransposeInterface
         $this->song = $this->setSectionsToBold($this->song);
 
         return preg_replace($this->search, '<span class="c">${1}</span>', $this->song);
+    }
+
+    private function formattedChords(): void
+    {
+        $song_chords = [];
+        preg_match_all($this->search, $this->song, $song_chords);
+
+        $chords = array_unique($song_chords[0]);        
+        foreach ($chords as $chord) {
+            if (strlen($chord) > 1 && ($chord[1] === 'b' || $chord[1] === '#')) {
+                $this->formattedChords[] = substr($chord, 0, 2);
+            } else {
+                $this->formattedChords[] = substr($chord, 0, 1);
+            }
+        }
     }
 
     private function getNotesInScale(string $scale): array
