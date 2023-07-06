@@ -20,7 +20,11 @@ php composer.phar require ljfreelancer88/transpose
 ## Usage
 
 ```php
+# Import the package
 use Ljfreelancer88\Transpose\Transpose;
+
+# Somewhere in your Controller
+$key = 'C'; // C, C#, Db, D
 
 $transposer = new Transpose($model->content);
 $transposer->setKey($key);
@@ -33,6 +37,9 @@ $transposer = new Transpose();
 $transposer->setKey($key);
 $transposer->loadSong($model->content);
 $transposedSong = $transposer->transpose($model->key, $key);
+
+# Somewhere in your View
+echo "<pre>$transposedSong</pre>";
 ```
 
 ### Testing
