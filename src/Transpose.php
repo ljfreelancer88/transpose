@@ -7,7 +7,7 @@ namespace Ljfreelancer88\Transpose;
 use Ljfreelancer88\Transpose\Exceptions\TransposeException;
 use Ljfreelancer88\Transpose\Interfaces\TransposeInterface;
 
-final class Transpose implements TransposeInterface
+class Transpose implements TransposeInterface
 {
     private static $chromaticScale = ['C', 'C#', 'Db', 'D', 'D#', 'Eb', 'E', 'F', 'F#', 'Gb', 'G', 'G#', 'Ab', 'A', 'A#', 'Bb', 'B'];
 
